@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eljie Peteros - Structured Webpage</title>
+    <style>
+        /* TAG SELECTORS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.05) 10px,
+                rgba(255, 255, 255, 0.05) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { left: 0; }
+            100% { left: 100%; }
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 1.8rem;
+            color: #764ba2;
+            font-weight: 600;
+        }
+
+        nav {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            padding: 1.2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            font-weight: 500;
+        }
+
+        a:hover {
+            transform: translateY(-2px);
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            line-height: 1.9;
+            color: #2c3e50;
+        }
+
+        section {
+            display: flex;
+            max-width: 1300px;
+            margin: 3rem auto;
+            gap: 2.5rem;
+            padding: 0 1.5rem;
+        }
+
+        article {
+            flex: 3;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        article:hover {
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.15);
+            transform: translateY(-5px);
+        }
+
+        aside {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            height: fit-content;
+            color: white;
+            position: sticky;
+            top: 80px;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* CLASS SELECTORS */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .article-title {
+            color: #667eea;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 1rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .article-content {
+            margin: 2rem 0;
+            font-size: 1rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .article-content:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #f5f7fa 100%);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.1);
+        }
+
+        .nav-link {
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .sidebar-title {
+            font-size: 1.4rem;
+            color: #ffd700;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+            border-radius: 8px;
+            border-left: 4px solid #ffd700;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(5px);
+        }
+
+        .sidebar-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #ffd700;
+        }
+
+        .sidebar-item p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .footer-text {
+            font-size: 0.95rem;
+            margin: 0.8rem 0;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-text:hover {
+            opacity: 1;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        /* ID SELECTORS */
+        #main-content {
+            background: transparent;
+        }
+
+        #sidebar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        #header-title {
+            position: relative;
+            z-index: 1;
+        }
+
+        #nav-bar {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #footer-section {
+            margin-top: 4rem;
+            border-top: none;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            section {
+                flex-direction: column;
+                margin: 2rem auto;
+            }
+
+            aside {
+                flex: 1;
+                position: static;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            nav {
+                flex-direction: row;
+                gap: 0.5rem;
+                padding: 0.8rem;
+            }
+
+            .nav-link {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            header {
+                padding: 2rem 1rem;
+            }
+
+            article {
+                padding: 1.5rem;
+            }
+
+            aside {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+                letter-spacing: 1px;
+            }
+
+            .nav-link {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            article, aside {
+                padding: 1rem;
+            }
+        }
+
+        /* JAVASCRIPT SECTION STYLES */
+        .js-section {
+            background: white;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .input-group {
+            margin: 2rem 0;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            background: #f9f9f9;
+        }
+
+        .display-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 4px solid #667eea;
+            min-height: 2rem;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+
+        .toggle-content {
+            background: #f5f7fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #764ba2;
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-content.visible {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <h1 id="header-title">✨ Eljie Peteros</h1>
+        <p style="font-size: 1.1rem; font-weight: 300; margin-top: 1rem; position: relative; z-index: 1;">Web Design & Development Portfolio</p>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav id="nav-bar">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <!-- JAVASCRIPT INTERACTIVE SECTION -->
+    <div style="max-width: 1300px; margin: 3rem auto; padding: 0 1.5rem;">
+        <div class="js-section">
+            <h2 class="article-title">⚡ JavaScript Interactive Section</h2>
+            
+            <!-- A. VARIABLES AND OUTPUT -->
+            <div style="margin: 2rem 0;">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">📋 A. Variables & Output (10 pts)</h3>
+                <div class="info-box" id="userInfo"></div>
+                <button onclick="displayInfo()">Display Student Info</button>
+            </div>
+
+            <!-- B. BUTTON FUNCTION -->
+            <div style="margin: 2rem 0;">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">🔔 B. Button Function - Alert (10 pts)</h3>
+                <p>Click the button to see an alert with a message:</p>
+                <button onclick="showAlert()">Show Alert Message</button>
+            </div>
+
+            <!-- C. USER INPUT -->
+            <div style="margin: 2rem 0;">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">✍️ C. User Input - Dynamic Display (10 pts)</h3>
+                <p>Type something and watch it display in real-time:</p>
+                <div class="input-group">
+                    <input type="text" id="userInput" placeholder="Enter text here..." oninput="displayUserInput()">
+                    <div class="display-box" id="inputDisplay">Your text will appear here...</div>
+                </div>
+            </div>
+
+            <!-- D. EVENT HANDLING -->
+            <div style="margin: 2rem 0;">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">🎯 D. Event Handling - Dynamic Content (10 pts)</h3>
+                <p>Click buttons to change content dynamically:</p>
+                <div class="button-group">
+                    <button onclick="showContent('content1')">Show Content 1</button>
+                    <button onclick="showContent('content2')">Show Content 2</button>
+                    <button onclick="showContent('content3')">Show Content 3</button>
+                    <button onclick="clearContent()">Clear Content</button>
+                </div>
+                <div id="content1" class="toggle-content">
+                    <strong>Content 1 - Web Development Fundamentals</strong>
+                    <p>Web development is the process of creating websites and web applications. It encompasses both the frontend (user interface) and backend (server-side logic) components.</p>
+                </div>
+                <div id="content2" class="toggle-content">
+                    <strong>Content 2 - HTML5 Structure</strong>
+                    <p>HTML5 introduced semantic elements like &lt;header&gt;, &lt;nav&gt;, &lt;article&gt;, &lt;section&gt;, &lt;aside&gt;, and &lt;footer&gt; to provide better structure and meaning to web content.</p>
+                </div>
+                <div id="content3" class="toggle-content">
+                    <strong>Content 3 - CSS3 Styling</strong>
+                    <p>CSS3 brings advanced features like gradients, animations, transformations, and flexbox/grid layouts. These features enable developers to create modern, responsive, and beautiful user interfaces.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN SECTION WITH ARTICLE AND ASIDE -->
+    <section id="main-content">
+        <!-- ARTICLE -->
+        <article>
+            <h2 class="article-title">📱 Featured Articles</h2>
+            
+            <div class="article-content">
+                <h3>🎨 Understanding Web Development</h3>
+                <p>
+                    Web development combines the art of design with the science of programming. 
+                    Creating effective web pages requires a solid understanding of 
+                    <span class="highlight">HTML</span>, <span class="highlight">CSS</span>, 
+                    and <span class="highlight">JavaScript</span>. These three technologies work together 
+                    to create beautiful, functional, and responsive digital experiences.
+                </p>
+            </div>
+
+            <div class="article-content">
+                <h3>🏗️ The Importance of Semantic HTML</h3>
+                <p>
+                    Semantic HTML uses meaningful tags like <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, 
+                    <code>&lt;article&gt;</code>, and <code>&lt;footer&gt;</code> to provide structure and meaning 
+                    to web content. This approach improves accessibility for all users, enhances SEO rankings, 
+                    and makes your website more discoverable and easier to navigate.
+                </p>
+            </div>
+
+            <div class="article-content">
+                <h3>🎯 CSS Styling Best Practices</h3>
+                <p>
+                    Effective CSS styling involves using different selectors strategically. 
+                    <strong>Tag selectors</strong> apply styles globally, <strong>class selectors</strong> target specific groups 
+                    of elements, and <strong>ID selectors</strong> style unique elements. Combining these approaches 
+                    creates flexible, maintainable stylesheets that enhance user experience and code readability.
+                </p>
+            </div>
+
+            <div class="article-content">
+                <h3>📱 Creating Responsive Designs</h3>
+                <p>
+                    Modern web design must account for various screen sizes and devices. 
+                    Using media queries and flexible layouts ensures your website looks great 
+                    on desktops, tablets, and mobile devices. This responsive approach is 
+                    essential for engaging users across all platforms and improving overall accessibility.
+                </p>
+            </div>
+        </article>
+
+        <!-- ASIDE (SIDEBAR) -->
+        <aside id="sidebar">
+            <h3 class="sidebar-title">⭐ Quick Resources</h3>
+            
+            <div class="sidebar-item">
+                <strong>🚀 Getting Started</strong>
+                <p>Learn the basics of HTML5 and CSS3</p>
+            </div>
+
+            <div class="sidebar-item">
+                <strong>💡 Web Trends 2026</strong>
+                <p>Latest design and development trends</p>
+            </div>
+
+            <div class="sidebar-item">
+                <strong>🛠️ Developer Tools</strong>
+                <p>Essential tools for web development</p>
+            </div>
+
+            <div class="sidebar-item">
+                <strong>👥 Community Hub</strong>
+                <p>Connect with developers worldwide</p>
+            </div>
+        </aside>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="footer-section">
+        <p class="footer-text">© 2026 <strong>Eljie Peteros</strong>. All rights reserved.</p>
+        <p class="footer-text">Midterm Project • HTML5 Semantic Elements • Modern CSS Styling • JavaScript Interactivity</p>
+        <p class="footer-text">📧 Email: <a href="mailto:eljie@example.com">eljie@example.com</a></p>
+    </footer>
+
+    <!-- JAVASCRIPT CODE -->
+    <script>
+        // ============================================
+        // A. VARIABLES AND OUTPUT (10 pts)
+        // ============================================
+        // Variables to store student information
+        const studentName = "Eljie Peteros";
+        const courseCode = "MIDTERM";
+        const courseName = "Web Development";
+        const institution = "Educational Institution";
+        const year = 2026;
+
+        // Function to display student information
+        function displayInfo() {
+            const infoBox = document.getElementById('userInfo');
+            infoBox.innerHTML = `
+                <strong>👤 Student Name:</strong> ${studentName}<br>
+                <strong>📚 Course:</strong> ${courseName} (${courseCode})<br>
+                <strong>🏫 Institution:</strong> ${institution}<br>
+                <strong>📅 Year:</strong> ${year}
+            `;
+            // Show success message
+            showSuccessMessage('Student information displayed!');
+        }
+
+        // ============================================
+        // B. BUTTON FUNCTION - ALERT (10 pts)
+        // ============================================
+        function showAlert() {
+            alert(`Welcome to ${courseName}!\n\nStudent: ${studentName}\nCourse: ${courseCode}\n\nThis is an interactive JavaScript demonstration.`);
+        }
+
+        // ============================================
+        // C. USER INPUT - DYNAMIC DISPLAY (10 pts)
+        // ============================================
+        function displayUserInput() {
+            const userInput = document.getElementById('userInput').value;
+            const displayBox = document.getElementById('inputDisplay');
+            
+            if (userInput.trim() === '') {
+                displayBox.textContent = 'Your text will appear here...';
+                displayBox.style.color = '#999';
+            } else {
+                displayBox.innerHTML = `<strong>Your input:</strong> "${userInput}"<br><small>Character count: ${userInput.length}</small>`;
+                displayBox.style.color = '#2c3e50';
+            }
+        }
+
+        // ============================================
+        // D. EVENT HANDLING - DYNAMIC CONTENT (10 pts)
+        // ============================================
+        function showContent(contentId) {
+            // Hide all content boxes
+            const allContents = document.querySelectorAll('.toggle-content');
+            allContents.forEach(content => {
+                content.classList.remove('visible');
+            });
+            
+            // Show selected content
+            const selectedContent = document.getElementById(contentId);
+            if (selectedContent) {
+                selectedContent.classList.add('visible');
+                showSuccessMessage(`${contentId.replace('content', 'Content ')} is now displayed!`);
+            }
+        }
+
+        function clearContent() {
+            const allContents = document.querySelectorAll('.toggle-content');
+            allContents.forEach(content => {
+                content.classList.remove('visible');
+            });
+            showSuccessMessage('Content cleared!');
+        }
+
+        // ============================================
+        // HELPER FUNCTION - SUCCESS MESSAGE
+        // ============================================
+        function showSuccessMessage(message) {
+            // Remove existing message if present
+            const existingMsg = document.querySelector('.success-message');
+            if (existingMsg) {
+                existingMsg.remove();
+            }
+            
+            // Create and display new message
+            const msgBox = document.createElement('div');
+            msgBox.className = 'success-message';
+            msgBox.textContent = '✓ ' + message;
+            
+            const jsSection = document.querySelector('.js-section');
+            if (jsSection) {
+                jsSection.insertBefore(msgBox, jsSection.firstChild);
+                
+                // Auto-remove message after 3 seconds
+                setTimeout(() => {
+                    msgBox.remove();
+                }, 3000);
+            }
+        }
+
+        // ============================================
+        // PAGE INITIALIZATION
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded successfully!');
+            console.log('Student Name:', studentName);
+            console.log('Course:', courseName);
+        });
+    </script>
+</body>
+</html>
