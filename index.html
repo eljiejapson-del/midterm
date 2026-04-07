@@ -490,7 +490,10 @@
             <div style="margin: 2rem 0;">
                 <h3 style="color: #667eea; margin-bottom: 1rem;">📋 A. Variables & Output (10 pts)</h3>
                 <div class="info-box" id="userInfo"></div>
-                <button onclick="displayInfo()">Display Student Info</button>
+                <div class="button-group">
+                    <button onclick="displayInfo()">Display Student Info</button>
+                    <button onclick="displayStudentInfo()">Show Student.js Data</button>
+                </div>
             </div>
 
             <!-- B. BUTTON FUNCTION -->
@@ -689,6 +692,38 @@
                 content.classList.remove('visible');
             });
             showSuccessMessage('Content cleared!');
+        }
+
+        // ============================================
+        // STUDENT.JS FUNCTIONALITY FOR BROWSER
+        // ============================================
+        function displayStudentInfo() {
+            // Student data object (browser version)
+            const student = {
+                name: "Eljie Peteros",
+                course: "Web Development",
+                yearLevel: "Midterm Project",
+                favoriteProgrammingLanguage: "JavaScript"
+            };
+
+            // Create or update display area
+            let studentDisplay = document.getElementById('studentDisplay');
+            if (!studentDisplay) {
+                studentDisplay = document.createElement('div');
+                studentDisplay.id = 'studentDisplay';
+                studentDisplay.className = 'info-box';
+                document.querySelector('.js-section').appendChild(studentDisplay);
+            }
+
+            studentDisplay.innerHTML = `
+                <h4 style="margin-top: 0; color: #ffd700;">📋 Student Information (Browser Version)</h4>
+                <strong>👤 Name:</strong> ${student.name}<br>
+                <strong>📚 Course:</strong> ${student.course}<br>
+                <strong>🎓 Year Level:</strong> ${student.yearLevel}<br>
+                <strong>💻 Favorite Programming Language:</strong> ${student.favoriteProgrammingLanguage}
+            `;
+
+            showSuccessMessage('Student information displayed in browser!');
         }
 
         // ============================================
